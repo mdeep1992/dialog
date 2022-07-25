@@ -2,13 +2,17 @@ package com.example.dialogtest;
 
 public class DialogModel {
     String name;
-    int age;
+    String age;
     String address;
 
-    public DialogModel(String name, int age, String address) {
+    public DialogModel(String name, String  age, String address) {
         this.name = name;
         this.age = age;
         this.address = address;
+    }
+
+    public DialogModel() {
+
     }
 
     public String getName() {
@@ -19,11 +23,11 @@ public class DialogModel {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
