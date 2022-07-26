@@ -1,6 +1,9 @@
 package com.example.dialogtest;
 
+import java.lang.reflect.Array;
+
 public class DialogModel {
+
     String name;
     String age;
     String address;

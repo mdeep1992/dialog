@@ -3,6 +3,7 @@ package com.example.dialogtest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.Transliterator;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes;
 
 public class DialogAdapter extends RecyclerView.Adapter<DialogAdapter.viewholder> {
 
