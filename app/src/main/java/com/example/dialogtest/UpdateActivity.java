@@ -30,9 +30,9 @@ public class UpdateActivity extends AppCompatActivity {
         update_btn=findViewById(R.id.upd_btn);
 
         Intent intent = getIntent();
-         update_name_= intent.getStringExtra("updatename");
-         update_age_ = intent.getStringExtra("updateage");
-         update_address_ = intent.getStringExtra("updateaddress");
+         update_name_= intent.getStringExtra("name");
+         update_age_ = intent.getStringExtra("age");
+         update_address_ = intent.getStringExtra("address");
          type  =intent.getStringExtra("type");
 
         update_name.setText(update_name_);
@@ -54,8 +54,10 @@ public class UpdateActivity extends AppCompatActivity {
                 intent.putExtra("updateage",age);
                 intent.putExtra("updateaddress",address);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getApplicationContext().startActivity(intent);
-           
+                setResult(RESULT_OK, intent);
+                finish();
+
+
             }
         });
 

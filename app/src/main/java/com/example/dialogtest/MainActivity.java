@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements updateInterface {
     FloatingActionButton fab_button;
     List<DialogModel> list = new ArrayList<>();
     DialogAdapter my_dialog_adapter;
-    String validate = "home";
+    int lastclickeditem;
     String name= "";
     String age= "";
     String address= "";
@@ -38,10 +38,7 @@ public class MainActivity extends AppCompatActivity implements updateInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
-        Intent intent = getIntent();
-         name = intent.getStringExtra("updatename");
-        age = intent.getStringExtra("updateage");
-         address = intent.getStringExtra("updateaddress");
+
 
 
 
@@ -118,15 +115,31 @@ public class MainActivity extends AppCompatActivity implements updateInterface {
 
     @Override
     public void onItemClick(DialogModel dialogModel, int position) {
-
+lastclickeditem=position;
         Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
         intent.putExtra("name", list.get(position).getName());
         intent.putExtra("age", list.get(position).getAge());
         intent.putExtra("address", list.get(position).getAddress());
         intent.putExtra("type", "update");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(intent);
-        finish();
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(intent, 1);
+
+
+//        finish();
 
     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                name = data.getStringExtra("updatename");
+                age = data.getStringExtra("updateage");
+                address = data.getStringExtra("updateaddress");
+DialogModel dialogModel=new DialogModel(name,age,address);
+list.set(lastclickeditem,dialogModel);
+my_dialog_adapter.notifyItemChanged(lastclickeditem);
+            }
+        }
+    }
+
 }
